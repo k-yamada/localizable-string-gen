@@ -12,7 +12,10 @@ data class StringData(
 
     val iosLine: String
         get() {
-            return """"$name" = "$text";"""
+              val formattedText = text
+                  .trim() // 文字列先頭と末尾の半角スペースを削除（Androidでは文字列先頭と末尾の半角スペースが非表示になるため）
+                  .replace("%s", "%@")
+              return """"$name" = "$formattedText";"""
         }
 }
 
